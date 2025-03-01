@@ -32,16 +32,16 @@ const navigation = [
   {
     name: "Mutual Funds",
     submenu: [
-      { name: "Equity MF", href: "#" },
-      { name: "Debt MF", href: "#" },
-      { name: "Hybrid MF", href: "#" },
+      { name: "Equity MF", href: "/equity-mutual-funds" },
+      { name: "Debt MF", href: "/debt-mutual-funds" },
+      { name: "Hybrid MF", href: "/hybrid-mutual-funds" },
     ],
   },
   {
     name: "FD and Bonds",
     submenu: [
       { name: "Fixed Deposit", href: "#" },
-      { name: "Bonds", href: "#" },
+      { name: "Bonds", href: "https://mnivesh.aspero.in/sign-in" },
       { name: "Government", href: "#" },
       { name: "Corporate", href: "#" },
       { name: "Tax-Free", href: "#" },
@@ -50,9 +50,9 @@ const navigation = [
   {
     name: "Insurance",
     submenu: [
-      { name: "Life Insurance", href: "#" },
-      { name: "Health Insurance", href: "#" },
-      { name: "Corporate Insurance", href: "#" },
+      { name: "Life Insurance", href: "/life-insurance" },
+      { name: "Health Insurance", href: "/health-insurance" },
+      { name: "Corporate Insurance", href: "/corporate-insurance" },
     ],
   },
 ];
@@ -81,8 +81,8 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 md:px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="#" className="flex items-center space-x-2 text-primary">
-            <Image src={"/logo.png"} alt="Logo" width={120} height={120} />
+          <Link href="/" className="flex items-center space-x-2 text-primary">
+            <Image src={"/logo1.png"} alt="Logo" width={120} height={120} />
           </Link>
 
           {/* Desktop Navigation */}

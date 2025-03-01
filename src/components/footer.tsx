@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container px-4 md:px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div>
-            <h3 className="text-xl font-bold mb-4">Wealth Consulting</h3>
+            <h3 className="text-xl font-bold mb-4">mNivesh</h3>
             <p className="text-primary-foreground/80 mb-4">
               There are several insurance solutions available to address
               specific needs and risks that individuals or businesses may face.
@@ -186,7 +186,7 @@ export default function Footer() {
 
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-primary-foreground/60">
           <p>
-            © {new Date().getFullYear()} Wealth Consulting. All rights reserved.
+            © {new Date().getFullYear()} niveshonline.com. All rights reserved.
           </p>
         </div>
       </div>
