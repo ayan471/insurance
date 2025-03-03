@@ -26,7 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Image from "next/image";
+// import Image from "next/image";
 
 const navigation = [
   {
@@ -82,7 +82,8 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 text-primary">
-            <Image src={"/logo1.png"} alt="Logo" width={120} height={120} />
+            {/* <Image src={"/logo1.png"} alt="Logo" width={120} height={120} /> */}
+            <span>Insurance</span>
           </Link>
 
           {/* Desktop Navigation */}
