@@ -26,6 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import NiveshLogo from "./nivesh-logo";
 // import Image from "next/image";
 
 const navigation = [
@@ -83,7 +84,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 text-primary">
             {/* <Image src={"/logo1.png"} alt="Logo" width={120} height={120} /> */}
-            <span>Insurance</span>
+            <NiveshLogo />
           </Link>
 
           {/* Desktop Navigation */}
