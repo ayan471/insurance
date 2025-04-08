@@ -1,3 +1,4 @@
+import BlogsSection from "@/components/blogs-section";
 import Contact from "@/components/contact";
 import Faq from "@/components/faq";
 import Features from "@/components/features";
@@ -20,6 +21,7 @@ export default function Home() {
       <Features />
       <Statistics />
       <Faq />
+      <BlogsSection />
       <Testimonials />
       <Magazines />
       <GetQuote />

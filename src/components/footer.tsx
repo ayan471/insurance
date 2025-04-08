@@ -5,60 +5,79 @@ import { Input } from "@/components/ui/input";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-primary text-primary-foreground">
-      <div className="container px-4 md:px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          <div>
-            <h3 className="text-xl font-bold mb-4">mNivesh</h3>
-            <p className="text-primary-foreground/80 mb-4">
+    <footer className="w-full bg-primary text-primary-foreground py-12">
+      <div className="container px-4 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {/* Left Column - Logo, Description, Subscribe */}
+          <div className="md:col-span-1">
+            <h2 className="text-2xl font-bold mb-4">mNivesh</h2>
+            <p className="text-primary-foreground/80 mb-6">
               There are several insurance solutions available to address
               specific needs and risks that individuals or businesses may face.
               Best solution is here.
             </p>
-            <div className="flex space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-primary-foreground/10"
-              >
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-primary-foreground/10"
-              >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-primary-foreground/10"
-              >
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-primary-foreground/10"
-              >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-primary-foreground/10"
-              >
-                <Youtube className="h-5 w-5" />
-                <span className="sr-only">YouTube</span>
-              </Button>
+
+            <div className="mb-6">
+              <div className="flex flex-col space-y-2">
+                <Input
+                  type="email"
+                  placeholder="Your email"
+                  className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
+                />
+                <Button variant="secondary" className="w-full md:w-auto">
+                  Subscribe
+                </Button>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <p className="mb-2 font-medium">Follow us on</p>
+              <div className="flex space-x-3">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-md hover:bg-primary-foreground/10"
+                >
+                  <Facebook className="h-5 w-5" />
+                  <span className="sr-only">Facebook</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-md hover:bg-primary-foreground/10"
+                >
+                  <Twitter className="h-5 w-5" />
+                  <span className="sr-only">Twitter</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-md hover:bg-primary-foreground/10"
+                >
+                  <Instagram className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-md hover:bg-primary-foreground/10"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-md hover:bg-primary-foreground/10"
+                >
+                  <Youtube className="h-5 w-5" />
+                  <span className="sr-only">YouTube</span>
+                </Button>
+              </div>
             </div>
           </div>
 
+          {/* Middle Columns - Products and Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4">Insurance Products</h3>
             <ul className="space-y-2">
@@ -167,26 +186,57 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Right Column - Contact Information */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-            <p className="text-primary-foreground/80 mb-4">
-              Subscribe to our newsletter for the latest updates and insurance
-              tips.
-            </p>
-            <div className="flex space-x-2">
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
-              />
-              <Button variant="secondary">Subscribe</Button>
+            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+            <div className="space-y-4">
+              <div>
+                <p className="font-semibold">ADDRESS:</p>
+                <p className="text-primary-foreground/80">
+                  Shop No-193 Ground Floor Pocket-7 Sector-2,Rohini
+                  <br />
+                  New Delhi-110085
+                </p>
+              </div>
+
+              <div>
+                <p className="font-semibold">DROP YOUR QUERIES:</p>
+                <p className="text-primary-foreground/80">
+                  amitbatra1987@gmail.com
+                </p>
+              </div>
+
+              <div>
+                <p className="font-semibold">CALL US:</p>
+                <p className="text-primary-foreground/80">+91 9213636781</p>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-xl font-bold mb-4">Also Available On</h3>
+              <div className="flex space-x-4">
+                <Link href="#" className="bg-white p-2 rounded-md inline-block">
+                  <div className="h-8 w-24 flex items-center justify-center text-black font-bold">
+                    PolicyBazaar
+                  </div>
+                </Link>
+                <Link href="#" className="bg-white p-2 rounded-md inline-block">
+                  <div className="h-8 w-24 flex items-center justify-center text-black font-bold">
+                    Coverfox
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-primary-foreground/60">
-          <p>
+        {/* Copyright Footer */}
+        <div className="border-t border-primary-foreground/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-primary-foreground/60">
             © {new Date().getFullYear()} niveshonline.com. All rights reserved.
+          </p>
+          <p className="text-primary-foreground/60 text-sm mt-2 md:mt-0">
+            Powered by mNivesh Insurance
           </p>
         </div>
       </div>
