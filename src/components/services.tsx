@@ -1,268 +1,181 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Home,
-  Car,
-  Heart,
-  Briefcase,
-  Shield,
-  Umbrella,
-  Building2,
-  Plane,
-} from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Shield, TrendingUp, Heart, Building, CreditCard } from "lucide-react";
+import Link from "next/link";
 
+// Define the 6 services from the screenshot
 const services = [
   {
-    icon: Home,
-    title: "Home Insurance",
-    description: "Protect your home and belongings with comprehensive coverage",
-    color: "#FF6B6B",
-    features: [
-      "Property damage protection",
-      "Personal liability coverage",
-      "Natural disaster protection",
-      "Theft and vandalism coverage",
-      "Additional living expenses",
-    ],
-    popular: false,
+    icon: Shield,
+    title: "NPS",
+    subtitle: "National Pension System",
+    description:
+      "The National Pension System (NPS) is a government-sponsored retirement savings scheme in India. It allows individuals to contribute towards their retirement, offering tax benefits, corporate bonds, and government securities.",
+    image: "/victoria-prymak-Nau80sZlnTY-unsplash.jpg",
+    color: "#4ECDC4",
   },
   {
-    icon: Car,
-    title: "Auto Insurance",
+    icon: Heart,
+    title: "Life Insurance",
+    subtitle: "Secure Your Family's Future",
     description:
-      "Complete protection for your vehicles and peace of mind on the road",
-    color: "#4ECDC4",
-    features: [
-      "Collision coverage",
-      "Comprehensive protection",
-      "Liability insurance",
-      "24/7 roadside assistance",
-      "Rental car coverage",
-    ],
-    popular: true,
+      "At Wealth Consulting, we prioritize your financial security and peace of mind by offering comprehensive life insurance solutions tailored to your unique needs.",
+    image: "/name_-gravity-_AdUs32i0jc-unsplash.jpg",
+    color: "#FF6B6B",
   },
   {
     icon: Heart,
     title: "Health Insurance",
-    description: "Quality healthcare coverage for you and your family",
-    color: "#45B7D1",
-    features: [
-      "Medical coverage",
-      "Prescription drug benefits",
-      "Preventive care",
-      "Specialist consultations",
-      "Emergency services",
-    ],
-    popular: false,
-  },
-  {
-    icon: Briefcase,
-    title: "Business Insurance",
-    description: "Comprehensive coverage solutions for your business needs",
-    color: "#96C93D",
-    features: [
-      "Property protection",
-      "Liability coverage",
-      "Workers compensation",
-      "Business interruption",
-      "Cyber liability",
-    ],
-    popular: false,
-  },
-  {
-    icon: Shield,
-    title: "Life Insurance",
-    description: "Secure your family's future with reliable life coverage",
-    color: "#9B5DE5",
-    features: [
-      "Term life insurance",
-      "Whole life coverage",
-      "Death benefit protection",
-      "Cash value accumulation",
-      "Flexible premium options",
-    ],
-    popular: false,
-  },
-  {
-    icon: Building2,
-    title: "Property Insurance",
+    subtitle: "Protect What Matters Most",
     description:
-      "Protect your investments with comprehensive property coverage",
+      "At Wealth Consulting, we understand the importance of protecting your health and well-being. We offer expert guidance in selecting the right health insurance plans that provide comprehensive coverage for medical expenses.",
+    image: "/nappy-J5UTvRgse7Q-unsplash.jpg",
+    color: "#45B7D1",
+  },
+  {
+    icon: TrendingUp,
+    title: "Mutual Fund",
+    subtitle: "Grow Your Wealth",
+    description:
+      "Our mutual fund services provide diversified investment opportunities managed by financial experts. Invest in a portfolio of stocks, bonds, and securities to achieve your long-term financial goals.",
+    image: "/austin-distel-EMPZ7yRZoGw-unsplash.jpg",
+    color: "#96C93D",
+  },
+  {
+    icon: Building,
+    title: "General Insurance",
+    subtitle: "Comprehensive Protection",
+    description:
+      "Our general insurance solutions cover a wide range of assets and liabilities, including property, vehicles, travel, and more. Get comprehensive protection against unexpected events and damages.",
+    image: "/tierra-mallorca-rgJ1J8SDEAY-unsplash.jpg",
+    color: "#9B5DE5",
+  },
+  {
+    icon: CreditCard,
+    title: "Loan Against Securities",
+    subtitle: "Leverage Your Investments",
+    description:
+      "Get quick access to funds by leveraging your existing investments. Our loan against securities service offers competitive interest rates and flexible repayment options without disrupting your investment portfolio.",
+    image: "/sandra-gabriel-xvR-_12QXsU-unsplash.jpg",
     color: "#F15BB5",
-    features: [
-      "Building coverage",
-      "Contents protection",
-      "Liability insurance",
-      "Loss of rent coverage",
-      "Natural disaster protection",
-    ],
-    popular: false,
-  },
-  {
-    icon: Plane,
-    title: "Travel Insurance",
-    description: "Travel with confidence knowing you're protected worldwide",
-    color: "#FEE440",
-    features: [
-      "Trip cancellation",
-      "Medical emergencies",
-      "Lost baggage coverage",
-      "Flight delay protection",
-      "24/7 travel assistance",
-    ],
-    popular: false,
-  },
-  {
-    icon: Umbrella,
-    title: "Umbrella Insurance",
-    description: "Additional liability coverage for complete peace of mind",
-    color: "#00BBF9",
-    features: [
-      "Extended liability coverage",
-      "Asset protection",
-      "Legal defense coverage",
-      "Worldwide protection",
-      "Family coverage",
-    ],
-    popular: false,
   },
 ];
 
-export default function Services() {
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
+export default function ServicesSection() {
+  const [activeService, setActiveService] = useState<number | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="w-full py-24 bg-white">
-      <div className="container px-4 md:px-6">
-        <div className="text-center space-y-4 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="space-y-2"
-          >
-            <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-6 py-2 text-sm text-primary">
-              Our Services
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
-              Comprehensive Insurance Solutions
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-              Discover our range of insurance products designed to protect what
-              matters most to you
-            </p>
-          </motion.div>
-        </div>
+    <section
+      ref={ref}
+      className="w-full py-24 bg-gradient-to-b from-white to-primary/5 overflow-hidden"
+    >
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute -top-40 right-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-70" />
+      <div className="absolute -bottom-40 left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-70" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="container px-4 md:px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center space-y-4 mb-16"
+        >
+          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-6 py-2 text-sm text-primary">
+            Our Services
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">
+            Comprehensive Financial Solutions
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
+            Discover our range of financial products and services designed to
+            secure your future
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onHoverStart={() => setHoveredService(index)}
-              onHoverEnd={() => setHoveredService(null)}
-              className="group relative"
+              onMouseEnter={() => setActiveService(index)}
+              onMouseLeave={() => setActiveService(null)}
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative h-full overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:shadow-xl">
-                {/* Background Pattern */}
-                <div
-                  className="absolute inset-0 opacity-[0.03] transition-opacity duration-300 group-hover:opacity-[0.06]"
-                  style={{
-                    backgroundImage: `radial-gradient(${service.color} 1px, transparent 1px)`,
-                    backgroundSize: "24px 24px",
-                  }}
-                />
-
-                {/* Content */}
-                <div className="relative p-6 space-y-4">
-                  {/* Icon */}
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300"
-                    style={{
-                      backgroundColor: `${service.color}10`,
-                      color: service.color,
-                    }}
+              {/* Service Card */}
+              <div className="h-full flex flex-col">
+                {/* Image Section */}
+                <div className="relative h-48 overflow-hidden">
+                  <motion.div
+                    initial={{ scale: 1 }}
+                    animate={{ scale: activeService === index ? 1.05 : 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
                   >
-                    <service.icon className="w-6 h-6" />
-                  </div>
-
-                  {/* Title & Description */}
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold">{service.title}</h3>
-                    <p className="text-muted-foreground">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Features */}
-                  <AnimatePresence>
-                    {hoveredService === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="pt-4"
-                      >
-                        <ul className="space-y-2">
-                          {service.features.map((feature, i) => (
-                            <motion.li
-                              key={i}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.1 }}
-                              className="flex items-center text-sm text-muted-foreground"
-                            >
-                              <div
-                                className="w-1.5 h-1.5 rounded-full mr-2"
-                                style={{ backgroundColor: service.color }}
-                              />
-                              {feature}
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Action Button */}
-                  <div className="pt-4">
-                    <Button
-                      className="w-full group/button relative overflow-hidden"
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Overlay */}
+                    <div
+                      className="absolute inset-0 opacity-80"
                       style={{
-                        backgroundColor:
-                          hoveredService === index ? service.color : undefined,
-                        color: hoveredService === index ? "white" : undefined,
+                        background: `linear-gradient(to bottom right, ${service.color}CC, ${service.color}99)`,
                       }}
-                    >
-                      Learn More
-                      <motion.div
-                        className="absolute inset-0 bg-black/10"
-                        initial={{ x: "100%" }}
-                        animate={{
-                          x: hoveredService === index ? "0%" : "100%",
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </Button>
+                    />
+                  </motion.div>
+
+                  {/* Icon */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={isInView ? { y: 0, opacity: 1 } : {}}
+                    transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                    className="absolute top-4 left-4 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg"
+                  >
+                    <service.icon
+                      className="h-6 w-6"
+                      style={{ color: service.color }}
+                    />
+                  </motion.div>
+
+                  {/* Title Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    <h3 className="text-xl font-bold text-white">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-white/90">{service.subtitle}</p>
                   </div>
                 </div>
 
-                {/* Popular Badge */}
-                {service.popular && (
-                  <div className="absolute top-3 right-3">
-                    <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-                      Popular
-                    </span>
-                  </div>
-                )}
+                {/* Content Section */}
+                <div className="p-6 flex-grow flex flex-col">
+                  <p className="text-muted-foreground mb-4 flex-grow">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Animated Border */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: activeService === index ? 1 : 0 }}
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `linear-gradient(90deg, transparent 0%, ${service.color}50 50%, transparent 100%)`,
+                    backgroundSize: "200% 100%",
+                    animation:
+                      activeService === index ? "shine 1.5s infinite" : "none",
+                  }}
+                />
               </div>
             </motion.div>
           ))}
@@ -271,19 +184,36 @@ export default function Services() {
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="text-center mt-16 space-y-4"
         >
-          <p className="text-muted-foreground mb-4">
-            Not sure which insurance is right for you?
+          <p className="text-lg text-muted-foreground">
+            Need personalized advice on which service is right for you?
           </p>
-          <Button size="lg" variant="outline">
-            Compare All Services
+          <Button size="lg" className="px-8">
+            <Link
+              href="https://niveshonline.themfbox.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Schedule a Consultation
+            </Link>
           </Button>
         </motion.div>
       </div>
+
+      {/* CSS for animated border */}
+      <style jsx global>{`
+        @keyframes shine {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+      `}</style>
     </section>
   );
 }

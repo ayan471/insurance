@@ -1,11 +1,8 @@
-import BlogsSection from "@/components/blogs-section";
-import Contact from "@/components/contact";
+import AboutSection from "@/components/about-section";
+import AppPromoSection from "@/components/app-promo-section";
 import Faq from "@/components/faq";
-import Features from "@/components/features";
-import GetQuote from "@/components/get-quote";
 import Hero from "@/components/hero";
-import HowItWorks from "@/components/how-it-works";
-import Magazines from "@/components/magazines";
+import PartnersCarousel from "@/components/partners-section-alt";
 import Services from "@/components/services";
 import Statistics from "@/components/statistics";
 import Testimonials from "@/components/testimonials";
@@ -15,17 +12,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <Hero />
+      <AboutSection />
       <Services />
-      <WhyChooseUs />
-      <HowItWorks />
-      <Features />
+
       <Statistics />
+      <WhyChooseUs />
+      <PartnersCarousel />
       <Faq />
-      <BlogsSection />
+
       <Testimonials />
-      <Magazines />
-      <GetQuote />
-      <Contact />
+      <AppPromoSection />
     </main>
   );
 }

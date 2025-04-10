@@ -2,75 +2,42 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
-import {
-  Users,
-  Building,
-  Award,
-  ThumbsUp,
-  Briefcase,
-  Clock,
-  Shield,
-  TrendingUp,
-} from "lucide-react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Users, Lightbulb, BookOpen, Award } from "lucide-react";
 
+// Updated statistics based on the provided image
 const statistics = [
   {
     icon: Users,
-    value: "50,000+",
-    label: "Satisfied Customers",
-    description: "Trusted by thousands of individuals and families",
+    value: "1232",
+    label: "Clients",
+    color: "#4ECDC4",
   },
   {
-    icon: Building,
-    value: "100+",
-    label: "Office Locations",
-    description: "Serving communities across the country",
+    icon: Lightbulb,
+    value: "64",
+    label: "Investment Strategies",
+    color: "#FF6B6B",
+  },
+  {
+    icon: BookOpen,
+    value: "42",
+    label: "Financial Workshops",
+    color: "#9B5DE5",
   },
   {
     icon: Award,
-    value: "25+",
-    label: "Years of Excellence",
-    description: "Providing reliable insurance solutions since 1998",
-  },
-  {
-    icon: ThumbsUp,
-    value: "98%",
-    label: "Customer Satisfaction",
-    description: "Consistently high customer satisfaction ratings",
-  },
-  {
-    icon: Briefcase,
-    value: "10,000+",
-    label: "Business Clients",
-    description: "Supporting businesses of all sizes",
-  },
-  {
-    icon: Clock,
-    value: "24/7",
-    label: "Customer Support",
-    description: "Round-the-clock assistance when you need it",
-  },
-  {
-    icon: Shield,
-    value: "$1B+",
-    label: "Claims Paid",
-    description: "Successfully processed and paid claims",
-  },
-  {
-    icon: TrendingUp,
-    value: "15%",
-    label: "Annual Growth",
-    description: "Consistent year-over-year growth",
+    value: "24",
+    label: "Expert Advisors",
+    color: "#45B7D1",
   },
 ];
 
-function CountUpAnimation({ value }: { value: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
+function CountUpAnimation({ value, color }: { value: string; color: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   const controls = useAnimation();
 
-  // Only animate numbers, not text values like "24/7"
+  // Only animate numbers, not text values
   const numericValue = Number.parseInt(value.replace(/[^0-9]/g, ""));
   const isNumeric = !isNaN(numericValue);
   const prefix = value.match(/^\D+/)?.[0] || "";
@@ -89,82 +56,165 @@ function CountUpAnimation({ value }: { value: string }) {
     }
   }, [isInView, controls, isNumeric]);
 
-  if (!isNumeric) {
-    return <span className="text-4xl font-bold text-primary">{value}</span>;
-  }
-
   return (
-    <span ref={ref} className="text-4xl font-bold text-primary">
+    <span
+      ref={ref}
+      className="text-5xl md:text-6xl lg:text-7xl font-bold"
+      style={{ color }}
+    >
       {prefix}
-      {isInView ? numericValue.toLocaleString() : "0"}
+      {isInView ? (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {Array.from(numericValue.toString()).map((digit, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
+            >
+              {digit}
+            </motion.span>
+          ))}
+        </motion.span>
+      ) : (
+        "0"
+      )}
       {suffix}
     </span>
   );
 }
 
-export default function Statistics() {
-  return (
-    <section id="statistics" className="w-full py-24 bg-[#f8fbff]">
-      <div className="container px-4 md:px-6">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
-              Our Impact in Numbers
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-              Discover how we've made a difference in the lives of our customers
-              and communities through our commitment to excellence.
-            </p>
-          </motion.div>
-        </div>
+export default function StatisticsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full py-24 relative overflow-hidden"
+      style={{
+        background: "linear-gradient(to bottom, white, #f8fbff)",
+      }}
+    >
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <motion.div
+        className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+        animate={
+          isInView ? { scale: [0.9, 1.1, 1], opacity: [0.5, 0.8, 0.6] } : {}
+        }
+        transition={{
+          duration: 8,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "reverse",
+        }}
+      />
+      <motion.div
+        className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+        animate={
+          isInView ? { scale: [1, 1.2, 0.9], opacity: [0.6, 0.8, 0.5] } : {}
+        }
+        transition={{
+          duration: 10,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "reverse",
+        }}
+      />
+
+      <div className="container px-4 md:px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16 space-y-4"
+        >
+          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-6 py-2 text-sm text-primary">
+            Our Impact
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">
+            The Numbers Speak for Themselves
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
+            Our track record of success is reflected in these key metrics
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {statistics.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              className="relative"
             >
-              <Card className="text-center h-full hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <stat.icon className="h-6 w-6 text-primary" />
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <CountUpAnimation value={stat.value} />
-                  <h3 className="text-xl font-semibold text-foreground">
+              <div className="text-center space-y-4">
+                {/* Animated background circle */}
+                <motion.div
+                  className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  style={{ backgroundColor: `${stat.color}10` }}
+                  initial={{ width: 0, height: 0 }}
+                  animate={
+                    isInView
+                      ? { width: 180, height: 180, opacity: [0, 1, 0.7] }
+                      : {}
+                  }
+                  transition={{ duration: 1, delay: index * 0.2 }}
+                />
+
+                {/* Icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.1 + index * 0.1,
+                  }}
+                  className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
+                  style={{ backgroundColor: `${stat.color}20` }}
+                >
+                  <stat.icon
+                    className="h-8 w-8"
+                    style={{ color: stat.color }}
+                  />
+                </motion.div>
+
+                {/* Counter */}
+                <div className="space-y-2">
+                  <CountUpAnimation value={stat.value} color={stat.color} />
+                  <motion.h3
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                    className="text-lg font-medium text-muted-foreground"
+                  >
                     {stat.label}
-                  </h3>
-                  <p className="text-muted-foreground">{stat.description}</p>
-                </CardContent>
-              </Card>
+                  </motion.h3>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-20 text-center max-w-3xl mx-auto"
         >
-          <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
-            Growing Together
+          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-primary/10">
+            <p className="text-lg text-muted-foreground">
+              These numbers represent our commitment to excellence and the trust
+              our clients place in us. Every number has a story of success
+              behind it.
+            </p>
           </div>
-          <p className="mt-4 text-lg text-muted-foreground max-w-[600px] mx-auto">
-            These numbers represent more than just statistics – they represent
-            trust, reliability, and our commitment to protecting what matters
-            most to you.
-          </p>
         </motion.div>
       </div>
     </section>

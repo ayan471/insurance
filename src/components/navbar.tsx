@@ -184,14 +184,22 @@ export default function Navbar() {
                   <div className="pt-4 space-y-4">
                     <Button variant="outline" className="w-full" asChild>
                       <Link
-                        href="https://wealthconsulting.themfbox.com/"
+                        href="https://niveshonline.themfbox.com/login"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         Login
                       </Link>
                     </Button>
-                    <Button className="w-full">Get a Quote</Button>
+                    <Button className="w-full">
+                      <Link
+                        href="https://niveshonline.themfbox.com/signup"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Get Started
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </SheetContent>

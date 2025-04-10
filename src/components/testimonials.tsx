@@ -8,34 +8,34 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Ritesh",
     role: "Homeowner",
     content:
-      "The home insurance policy I got has been a lifesaver. When we had water damage last year, the claims process was quick and hassle-free. I couldn't be happier with the service!",
+      "Wealth Consulting provided me with a clear, step-by-step strategy for investing in mutual funds. Their experts took the time to understand my financial situation and helped me make smart, informed decisions. I’ve already seen significant growth in my portfolio!",
     avatar: "/placeholder.svg?height=100&width=100",
     rating: 5,
   },
   {
-    name: "Michael Chen",
+    name: "Mukesh",
     role: "Business Owner",
     content:
-      "As a small business owner, finding the right insurance was crucial. The team provided excellent guidance and found a policy that perfectly fits my business needs at a competitive rate.",
+      "Wealth Consulting offers expert financial guidance with a personalized touch. Their transparent approach and deep market knowledge make investing stress-free, helping clients achieve long-term financial growth with confidence",
     avatar: "/placeholder.svg?height=100&width=100",
     rating: 5,
   },
   {
-    name: "Emily Rodriguez",
+    name: "Sandeep",
     role: "Driver",
     content:
-      "After my car accident, I was worried about the claims process. But their team made everything so simple. My claim was processed quickly, and I was back on the road in no time.",
+      "Wealth Consulting made my experience with mutual fund investments incredibly smooth and stress-free. They were transparent, honest, and always had my best interests at heart.Highly recommended!",
     avatar: "/placeholder.svg?height=100&width=100",
     rating: 4,
   },
   {
-    name: "David Thompson",
+    name: "Sumit Kumar",
     role: "Family Provider",
     content:
-      "The life insurance policy I purchased has given me peace of mind knowing my family will be taken care of. The advisors were knowledgeable and helped me find the perfect coverage.",
+      "The team at Wealth Consulting has been a game-changer for me. Their knowledge of mutual funds and financial planning is unmatched. I now have a well-diversified portfolio that aligns with my risk tolerance and long-term",
     avatar: "/placeholder.svg?height=100&width=100",
     rating: 5,
   },

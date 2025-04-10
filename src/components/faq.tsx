@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 const faqs = [
   {
@@ -96,7 +97,15 @@ export default function Faq() {
           <p className="text-muted-foreground">
             Still have questions? Contact our support team for assistance.
           </p>
-          <Button className="mt-4">Contact Support</Button>
+          <Button className="mt-4">
+            <Link
+              href="https://niveshonline.themfbox.com/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Support
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
