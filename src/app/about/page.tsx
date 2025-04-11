@@ -1,6 +1,8 @@
 "use client";
 
+import AppPromoSection from "@/components/app-promo-section";
 import { Button } from "@/components/ui/button";
+import WhyChooseUs from "@/components/why-choose-us";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -128,6 +130,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <WhyChooseUs />
+
       {/* CTA Section */}
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
@@ -158,6 +162,7 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+      <AppPromoSection />
     </main>
   );
 }
