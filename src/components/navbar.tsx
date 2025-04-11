@@ -148,7 +148,7 @@ export default function Navbar() {
                 Login
               </Link>
             </Button>
-            <Button>
+            <Button asChild>
               <Link
                 href="https://niveshonline.themfbox.com/signup"
                 target="_blank"
