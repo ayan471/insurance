@@ -122,7 +122,7 @@ export default function Navbar() {
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <Button variant="ghost" asChild>
               <Link
-                href="https://wealthconsulting.themfbox.com/"
+                href="https://wealthconsulting.themfbox.com/login"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -136,7 +136,7 @@ export default function Navbar() {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Get a Quote
+              Get Started
             </Button>
           </div>
 
