@@ -32,7 +32,7 @@ export default function LoadingScreen() {
           transition={{ delay: 0.2 }}
           className="text-2xl font-bold text-gray-900 mb-4"
         >
-          InsureGuard
+          Nivesh
         </motion.h1>
 
         {/* Loading Bar */}

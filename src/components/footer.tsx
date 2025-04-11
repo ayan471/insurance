@@ -151,22 +151,7 @@ export default function Footer() {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  File a Claim
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Careers
-                </Link>
-              </li>
+
               <li>
                 <Link
                   href="#"
@@ -209,22 +194,6 @@ export default function Footer() {
               <div>
                 <p className="font-semibold">CALL US:</p>
                 <p className="text-primary-foreground/80">+91 9213636781</p>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Also Available On</h3>
-              <div className="flex space-x-4">
-                <Link href="#" className="bg-white p-2 rounded-md inline-block">
-                  <div className="h-8 w-24 flex items-center justify-center text-black font-bold">
-                    PolicyBazaar
-                  </div>
-                </Link>
-                <Link href="#" className="bg-white p-2 rounded-md inline-block">
-                  <div className="h-8 w-24 flex items-center justify-center text-black font-bold">
-                    Coverfox
-                  </div>
-                </Link>
               </div>
             </div>
           </div>

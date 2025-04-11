@@ -56,6 +56,14 @@ const navigation = [
       { name: "Corporate Insurance", href: "/corporate-insurance" },
     ],
   },
+  {
+    name: "About",
+    href: "/about",
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+  },
 ];
 
 export default function Navbar() {
@@ -93,25 +101,36 @@ export default function Navbar() {
               <NavigationMenuList>
                 {navigation.map((item) => (
                   <NavigationMenuItem key={item.name}>
-                    <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                      {item.name}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[200px] gap-2 p-4">
-                        {item.submenu.map((subItem) => (
-                          <li key={subItem.name}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={subItem.href}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                {subItem.name}
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
+                    {item.submenu ? (
+                      <>
+                        <NavigationMenuTrigger className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                          {item.name}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className="grid w-[200px] gap-2 p-4">
+                            {item.submenu.map((subItem) => (
+                              <li key={subItem.name}>
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    href={subItem.href}
+                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                </NavigationMenuLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href || "#"}
+                        className="flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
@@ -122,21 +141,21 @@ export default function Navbar() {
           <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <Button variant="ghost" asChild>
               <Link
-                href="https://wealthconsulting.themfbox.com/login"
+                href="https://niveshonline.themfbox.com/login"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Login
               </Link>
             </Button>
-            <Button
-              onClick={() =>
-                document
-                  .getElementById("get-quote")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Get Started
+            <Button>
+              <Link
+                href="https://niveshonline.themfbox.com/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get Started
+              </Link>
             </Button>
           </div>
 
@@ -160,26 +179,37 @@ export default function Navbar() {
                 </SheetHeader>
                 <div className="mt-8 flex flex-col space-y-4">
                   <Accordion type="single" collapsible className="w-full">
-                    {navigation.map((item, index) => (
-                      <AccordionItem key={index} value={`item-${index}`}>
-                        <AccordionTrigger className="text-base font-medium text-muted-foreground hover:text-primary transition-colors">
-                          {item.name}
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <div className="flex flex-col space-y-2 pl-4">
-                            {item.submenu.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                className="text-sm text-muted-foreground hover:text-primary transition-colors py-2"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
+                    {navigation.map((item, index) =>
+                      item.submenu ? (
+                        <AccordionItem key={index} value={`item-${index}`}>
+                          <AccordionTrigger className="text-base font-medium text-muted-foreground hover:text-primary transition-colors">
+                            {item.name}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="flex flex-col space-y-2 pl-4">
+                              {item.submenu.map((subItem) => (
+                                <Link
+                                  key={subItem.name}
+                                  href={subItem.href}
+                                  className="text-sm text-muted-foreground hover:text-primary transition-colors py-2"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ) : (
+                        <div key={index} className="py-2">
+                          <Link
+                            href={item.href || "#"}
+                            className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        </div>
+                      )
+                    )}
                   </Accordion>
                   <div className="pt-4 space-y-4">
                     <Button variant="outline" className="w-full" asChild>
