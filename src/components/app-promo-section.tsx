@@ -146,7 +146,7 @@ export default function AppPromoSection() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
-                href="#"
+                href="https://play.google.com/store/apps/details?id=in.mymfbox&pli=1"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center space-x-2 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
@@ -176,7 +176,7 @@ export default function AppPromoSection() {
                 </div>
               </motion.a>
               <motion.a
-                href="#"
+                href="https://apps.apple.com/sg/app/themfbox/id1594370380"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center space-x-2 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
