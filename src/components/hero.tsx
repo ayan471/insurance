@@ -192,7 +192,7 @@ export default function Hero() {
               className="space-y-8"
             >
               <div className="space-y-6">
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
@@ -200,7 +200,7 @@ export default function Hero() {
                 >
                   <Shield className="mr-2 h-4 w-4" />
                   Trusted by 50,000+ customers
-                </motion.div>
+                </motion.div> */}
 
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
